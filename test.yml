@@ -37,5 +37,6 @@ jobs:
     vmImage: ubuntu-latest
   steps:
   - script: |
-      ./sdcard-images-utils/nxp/runme.sh 1 main
+      cd sdcard-images-utils/nxp
+      ./runme.sh 1 main
     displayName: 'test'
