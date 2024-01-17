@@ -7,41 +7,16 @@
 trigger:
 - main
 
+pool:
+  vmImage: ubuntu-latest
 
-variables:
-  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  isNextStable: $[eq(variables['Build.SourceBranch'], 'refs/heads/next_stable')]
-  isRelease: $[contains(variables['Build.SourceBranch'], 'refs/heads/20')]
-
-
-jobs:
-- job: Test_ceeling
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - checkout: self
-    fetchDepth: 1
-    submodules: true
-    clean: true
-    persistCredentials: true
-  - script: |
-      echo $(isMaster) > test.txt
-      echo $(isNextStable) >> test.txt
-      echo $(isRelease) >> test.txt
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: '$(Build.Repository.LocalPath)/test.txt'
-      artifactName: 'test'
-- job: print
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - checkout: self
-    fetchDepth: 1
-    submodules: true
-    clean: true
-    persistCredentials: true
-  - script: |
-      cd sdcard-images-utils/nxp
-      ./runme.sh 1 main
-    displayName: 'test'
+steps:
+- checkout: self
+  fetchDepth: 1
+  submodules: true
+  clean: true
+  persistCredentials: true
+- script: |
+    cd sdcard-images-utils/nxp
+    ./runme.sh 1 main
+  displayName: 'test'
