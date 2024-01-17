@@ -17,8 +17,8 @@ steps:
   clean: true
   persistCredentials: true
 - script: |
-    git config --global user.email "Andreea.Andrisan@analog.com"
-    git config --global user.name "Andreea Andrisan"
+    # git config --global user.email "Andreea.Andrisan@analog.com"
+    # git config --global user.name "Andreea Andrisan"
     cd sdcard-images-utils/nxp
     ./runme.sh 1 main
   displayName: 'test'
