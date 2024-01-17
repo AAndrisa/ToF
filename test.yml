@@ -20,3 +20,5 @@ steps:
     cd sdcard-images-utils/nxp
     ./runme.sh 1 main
   displayName: 'test'
+  env:
+    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
