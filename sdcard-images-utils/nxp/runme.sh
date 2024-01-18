@@ -41,6 +41,7 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
 ROOTDIR=`pwd`
 
+
 COMPONENTS="imx-atf uboot-imx linux-imx imx-mkimage"
 mkdir -p build
 for i in $COMPONENTS; do
