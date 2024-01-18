@@ -17,6 +17,7 @@ steps:
   clean: true
   persistCredentials: true
 - script: |
+    git config --list
     # git config --global user.email "Andreea.Andrisan@analog.com"
     # git config --global user.name "Andreea Andrisan"
     echo $(System.AccessToken)
