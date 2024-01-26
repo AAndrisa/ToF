@@ -14,17 +14,21 @@ trigger:
     - sdcard-images-utils/README.md
     - sdcard-images-utils/nxp/README.md
 
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- checkout: self
-  fetchDepth: 1
-  submodules: true
-  clean: true
-  persistCredentials: true
-- script: |
-    cd sdcard-images-utils/nxp
-    ./runme.sh 1 main
-  displayName: 'test'
-
+jobs:
+- job: Image_build
+  pool:
+    name: Default
+    demands:
+      - agent.name -equals ToF
+  timeoutInMinutes: 120
+  steps:
+  - checkout: self
+    fetchDepth: 1
+    submodules: true
+    clean: true
+    persistCredentials: true
+  - script: |
+      echo $(Build.SourceVersion)
+      cd sdcard-images-utils/nxp
+      ./runme.sh 1 main
+    displayName: 'test'
